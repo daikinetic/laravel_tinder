@@ -107,7 +107,7 @@
         msg_time = new Date();
         // msg_time = msg_time.yyyymmddhis()
        
-        auth_img_url = "{{ Auth::user()->img_url }}"
+        auth_img_url = "{{ asset(Auth::user()->img_url) }}"
 
         function auth_message(message, msg_time) {
             if (!message) {
@@ -157,12 +157,12 @@
         }
 
         // html の作成
-        user_img_url = "{{ $user->img_url }}";
+        user_img_url = "{{ asset($user->img_url) }}";
 
         function user_message(message, msg_time) {
             create_message = `<div class="d-flex justify-content-start mb-4">`;
             create_message += '<div class="img_cont_msg">';
-            create_message += `<img src="" class="rounded-circle user_img_msg"></div>`;
+            create_message += `<img src="${user_img_url}" class="rounded-circle user_img_msg"></div>`;
             create_message += '<div class="msg_cotainer">';
             create_message += `${message.replace(/\n/g, '<br>')}`;
             create_message += `<span class="msg_time text-nowrap">${msg_time}</span>`;
