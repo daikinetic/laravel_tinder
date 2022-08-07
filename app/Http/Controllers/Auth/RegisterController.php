@@ -73,13 +73,13 @@ class RegisterController extends Controller
         $data['image']->storeAs('public/images',$fileName);
 
         //+ 保存した画像の取得パスを作成する。(publicパスからの相対パス)
-         $fullFilePath = 'storage/images/'.$fileName;
+        $fullFilePath = 'storage/images/'.$fileName;
 
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'img_url'  => $fullFilePath,
+            'img_url'  => base64_encode(file_get_contents($data['image'])),
         ]);
     }
 }

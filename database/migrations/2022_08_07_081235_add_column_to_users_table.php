@@ -17,7 +17,7 @@ return new class extends Migration
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
 
         Schema::table('users', function (Blueprint $table) {
-            $table->longText('img_url');
+            $table->longText('img_url')->change();
         });
 
         //外部キー対策有効に戻している。
@@ -41,3 +41,4 @@ return new class extends Migration
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 };
+

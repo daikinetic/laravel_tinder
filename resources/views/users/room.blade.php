@@ -12,7 +12,7 @@
                     <div class="card-header msg_head bg-secondary">
                         <div class="d-flex bd-highlight">
                             <div class="img_cont">
-                                <img src="{{ asset($user->img_url) }}" class="rounded-circle user_img">
+                                <img src="data:image/png;base64,<?= $user->img_url ?>" class="rounded-circle user_img">
                             </div>
                             <div class="user_info">
                                 <span>{{ $user->name }}</span>
@@ -95,19 +95,14 @@
             var m    = this.getMinutes().toString();
             var s    = this.getSeconds().toString();
 
-            return 
-            yyyy 
-            + "/" + (mm[1] ? mm : "0" + mm[0]) 
-            + "/" + (dd[1] ? dd : "0" + dd[0]) 
-            + " " + (h [1] ? h  : "0" + h [0]) 
-            + ":" + (m [1] ? m  : "0" + m [0]) 
-            + ":" + (s [1] ? s  : "0" + s [0]); // padding
+            return yyyy + "/" + (mm[1] ? mm : "0" + mm[0]) + "/" + (dd[1] ? dd : "0" + dd[0]) + " " + (h [1] ? h  : "0" + h [0]) + ":" + (m [1] ? m  : "0" + m [0]) + ":" + (s [1] ? s  : "0" + s [0]); // padding
         };
 
         msg_time = new Date();
-        // msg_time = msg_time.yyyymmddhis()
-       
-        auth_img_url = "{{ asset(Auth::user()->img_url) }}"
+        msg_time = msg_time.yyyymmddhis();
+        
+        // src="data:image/png;base64,<?= Auth::user()->img_url ?>"
+        auth_img_url = "data:image/png;base64,<?= Auth::user()->img_url ?>"
 
         function auth_message(message, msg_time) {
             if (!message) {
@@ -146,18 +141,19 @@
                     $.each(data, function(index, value) {
                         message = ``;
                         if (auth_id == value.from_user_id) {
-                            message += auth_message(value.message, value.created_at);
+                            message += auth_message(value.message, new Date(value.created_at).yyyymmddhis());
                         } else {
-                            message += user_message(value.message, value.created_at);
+                            message += user_message(value.message, new Date(value.created_at).yyyymmddhis());
                         }
                         messages.push(message);
                     });
                     result[0].innerHTML = messages.join(""); 
+                    
                 });
         }
 
         // html の作成
-        user_img_url = "{{ asset($user->img_url) }}";
+        user_img_url = "data:image/png;base64,<?= $user->img_url ?>";
 
         function user_message(message, msg_time) {
             create_message = `<div class="d-flex justify-content-start mb-4">`;

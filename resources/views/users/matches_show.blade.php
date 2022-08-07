@@ -6,7 +6,7 @@
         <div class="row justify-content-center">
             <div class="card text-center" style="">
                 <img 
-                    src="{{ asset($main_user->img_url) }}" 
+                    src="data:image/png;base64,<?= $main_user->img_url ?>"
                     class="mx-auto" 
                     alt="{{ $main_user->name }}"
                     style="height:400px;width:300px;object-fit:cover;object-position:center;"

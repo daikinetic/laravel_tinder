@@ -11,8 +11,8 @@
                     <div class="row">
                         @foreach ($users as $key => $user)
                             <div class="col-12 mb-3">
-                                <img 
-                                    src="{{ asset($user->img_url) }}" 
+                                <img
+                                    src="data:image/png;base64,<?= $user->img_url ?>" 
                                     class="rounded-circle" 
                                     height="70px" 
                                     width="70px" 
@@ -34,3 +34,5 @@
     </div>
 </div>
 @endsection
+
+

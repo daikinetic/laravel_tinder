@@ -14,8 +14,8 @@
 
 <div class="img border rounded mx-auto text-center py-2" style="">
     {{-- ユーザーの画像 --}}
-    <img 
-        src="{{ asset($user->img_url) }}" 
+    <img
+        src="data:image/png;base64,<?= $user->img_url ?>"
         alt="" 
         class=""
         style="width:350px;height:400px;object-fit:cover;object-position:center;"
