@@ -6,7 +6,7 @@
         }
 
         .tye i {
-            font-size: 80px;
+            font-size: 40px;
             color: #5de19c;
         }
     </style>
